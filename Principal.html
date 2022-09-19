@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<style type="text/css">
+<!--
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-color: #B89C87;
+	background-image: url(imgs/img_fond2.jpg);
+}
+
+/* ~~ Selectores de elemento/etiqueta ~~ */
+ul, ol, dl { /* Debido a las diferencias existentes entre los navegadores, es recomendable no añadir relleno ni márgenes en las listas. Para lograr coherencia, puede especificar las cantidades deseadas aquí o en los elementos de lista (LI, DT, DD) que contienen. Recuerde que lo que haga aquí se aplicará en cascada en la lista .nav, a no ser que escriba un selector más específico. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* la eliminación del margen superior resuelve un problema que origina que los márgenes escapen de la etiqueta div contenedora. El margen inferior restante lo mantendrá separado de los elementos de que le sigan. */
+	padding-right: 15px;
+	padding-left: 15px; /* la adición de relleno a los lados del elemento dentro de las divs, en lugar de en las divs propiamente dichas, elimina todas las matemáticas de modelo de cuadro. Una div anidada con relleno lateral también puede usarse como método alternativo. */
+}
+a img { /* este selector elimina el borde azul predeterminado que se muestra en algunos navegadores alrededor de una imagen cuando está rodeada por un vínculo */
+	border: none;
+}
+
+/* ~~ La aplicación de estilo a los vínculos del sitio debe permanecer en este orden (incluido el grupo de selectores que crea el efecto hover -paso por encima-). ~~ */
+a:link {
+	color:#414958;
+	text-decoration: underline; /* a no ser que aplique estilos a los vínculos para que tengan un aspecto muy exclusivo, es recomendable proporcionar subrayados para facilitar una identificación visual rápida */
+}
+a:visited {
+	color: #00C;
+	text-decoration: underline;
+}
+a:hover, a:active, a:focus { /* este grupo de selectores proporcionará a un usuario que navegue mediante el teclado la misma experiencia de hover (paso por encima) que experimenta un usuario que emplea un ratón. */
+	text-decoration: none;
+}
+
+/* ~~ este contenedor rodea a todas las demás divs, lo que les asigna su anchura basada en porcentaje ~~ */
+.container {
+	width: 80%;
+	max-width: 1260px;/* puede que sea conveniente una anchura máxima (max-width) para evitar que este diseño sea demasiado ancho en un monitor grande. Esto mantiene una longitud de línea más legible. IE6 no respeta esta declaración. */
+	min-width: 780px;/* puede que sea conveniente una anchura mínima (min-width) para evitar que este diseño sea demasiado estrecho. Esto permite que la longitud de línea sea más legible en las columnas laterales. IE6 no respeta esta declaración. */
+	background: #FFF;
+	margin: 0 auto; /* el valor automático de los lados, unido a la anchura, centra el diseño. No es necesario si establece la anchura de .container en el 100%. */
+	overflow: hidden; /* esta declaración provoca que .container borre todas las columnas flotantes contenidas dentro de él. */
+}
+
+/* ~~ Estas son las columnas para el diseño. ~~ 
+
+1) El relleno sólo se sitúa en la parte superior y/o inferior de las divs. Los elementos situados dentro de estas divs tienen relleno a los lados. Esto le ahorra las "matemáticas de modelo de cuadro". Recuerde que si añade relleno o borde lateral a la div propiamente dicha, éste se añadirá a la anchura que defina para crear la anchura *total*. También puede optar por eliminar el relleno del elemento en la div y colocar una segunda div dentro de ésta sin anchura y el relleno necesario para el diseño deseado.
+
+2) No se asigna margen a las columnas, ya que todas ellas son flotantes. Si es preciso añadir un margen, evite colocarlo en el lado hacia el que se produce la flotación (por ejemplo: un margen derecho en una div configurada para flotar hacia la derecha). En muchas ocasiones, puede usarse relleno como alternativa. En el caso de divs para las que deba incumplirse esta regla, deberá añadir una declaración "display:inline" a la regla de la div para evitar un error que provoca que algunas versiones de Internet Explorer dupliquen el margen.
+
+3) Dado que las clases se pueden usar varias veces en un documento (y que también se pueden aplicar varias clases a un elemento), se ha asignado a las columnas nombres de clases en lugar de ID. Por ejemplo, dos divs de barra lateral podrían apilarse si fuera necesario. Si lo prefiere, éstas pueden cambiarse a ID fácilmente, siempre y cuando las utilice una sola vez por documento.
+
+4) Si prefiere que la navegación esté a la izquierda en lugar de a la derecha, simplemente haga que estas columnas floten en dirección opuesta (todas a la izquierda en lugar de todas a la derecha) y éstas se representarán en orden inverso. No es necesario mover las divs por el código fuente HTML.
+
+*/
+.sidebar1 {
+	float: right;
+	width: 20%;
+	padding-bottom: 10px;
+	background-color: #93A5C4;
+	background-image: url(imgs/img_fond3.jpg);
+}
+.content {
+	padding: 10px 0;
+	width: 80%;
+	float: right;
+	font-size: medium;
+}
+
+/* ~~ Este selector agrupado da espacio a las listas del área de .content ~~ */
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px; /* este relleno reproduce en espejo el relleno derecho de la regla de encabezados y de párrafo incluida más arriba. El relleno se ha colocado en la parte inferior para que el espacio existente entre otros elementos de la lista y a la izquierda cree la sangría. Estos pueden ajustarse como se desee. */
+}
+
+/* ~~ Los estilos de lista de navegación (pueden eliminarse si opta por usar un menú desplegable predefinido como el de Spry) ~~ */
+ul.nav {
+	list-style: none; /* esto elimina el marcador de lista */
+	border-top: 1px solid #666; /* esto crea el borde superior de los vínculos (los demás se sitúan usando un borde inferior en el LI) */
+	margin-bottom: 15px; /* esto crea el espacio entre la navegación en el contenido situado debajo */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* esto crea la separación de los botones */
+}
+ul.nav a, ul.nav a:visited { /* al agrupar estos selectores, se asegurará de que los vínculos mantengan el aspecto de botón incluso después de haber sido visitados */
+	padding: 5px 5px 5px 15px;
+	display: block; /* esto asigna propiedades de bloque al vínculo, lo que provoca que llene todo el LI que lo contiene. Esto provoca que toda el área reaccione a un clic de ratón. */
+	text-decoration: none;
+	color: #000;
+	background-color: #8090AB;
+	background-image: url(imgs/img_fond3.jpg);
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* esto cambia el color de fondo y del texto tanto para usuarios que naveguen con ratón como para los que lo hagan con teclado */
+	color: #FFF;
+	background-color: #6F7D94;
+	background-image: url(imgs/img_fond3.jpg);
+}
+
+/* ~~ clases float/clear varias ~~ */
+.fltrt {  /* esta clase puede utilizarse para que un elemento flote en la parte derecha de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* esta clase puede utilizarse para que un elemento flote en la parte izquierda de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* esta clase puede situarse en una <br /> o div vacía como elemento final tras la última div flotante (dentro de #container) si se elimina overflow:hidden en .container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+a:hover {
+	color: #900;
+}
+a:active {
+	color: #F90;
+}
+.container .content h2 {
+	font-size: large;
+}
+.container .sidebar1 .nav li a strong {
+	color: #000;
+}
+-->
+</style><!--[if lte IE 7]>
+<style>
+.content { margin-right: -1px; } /* este margen negativo de 1 px puede situarse en cualquiera de las columnas de este diseño con el mismo efecto corrector. */
+ul.nav a { zoom: 1; }  /* la propiedad de zoom da a IE el desencadenante hasLayout que necesita para corregir el espacio en blanco extra existente entre los vínculos */
+</style>
+<![endif]--></head>
+
+<body>
+
+<div class="container">
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="CS5/Contactenos.html"><strong>INFORMACION DE CONTACTO</strong></a></li>
+      <li><a href="CS5/Informacion.html"><strong>CONTENIDO</strong></a></li>
+      <li></li>
+      <li><a href="CS5/Formulario.html"><strong>FORMULA RIO</strong></a></li>
+    </ul>
+    <p> <img src="imgs/logodos.png" width="159" height="151" align="middle" /></p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <!-- end .sidebar1 --></div>
+  <div class="content">
+    <h1>PANADERIA JOVANIVASQUEZ</h1>
+    <p>Esta panaderia es una empresa familiar el cual lleva en el mercado màs de 4 decadas,desde el tataratatara abuelo Rodolfo.Esta panaderia ha tenido los mejores panes en el pais desde su creacion. para saber mas sobre nuestros panes:<a href="CS5/Informacion.html">PANES DE PANADERIA JOVANIVASQUEZ.</a></p>
+    <h2>Novedades</h2>
+    <p>Esta Panadera hà sido siempre una empresa preocupada por satisfacer las necesidades de sus clientes, ofreciendo siempre la <strong>máxima calidad</strong> tanto en sus productos como en sus servicios.</p>
+    <p>A lo largo de los años, La Panadera ha apostado por la innovación, desarrollando nuevos productos diferenciales tanto por su sabor, como por su funcionalidad. Como resultado de esa investigación, nace su producto estrella, <strong>Laxapan</strong>, el primer <strong>pan de fibra verde</strong>.</p>
+    <p>Su misión es ser la empresa líder en el negocio de la panadería y repostería, superando las expectativas de los clientes, a través de un equipo comprometido.</p>
+<h3><strong>Nuestros servicios</strong></h3>
+    <p>No importa el tamaño del negocio, preséntanos tu proyecto y juntos lo haremos realidad. Es independiente si solamente es para una tienda o varias, o un grupo de franquicias.</p>
+    <p>Nuestros proyectos se adaptan a todo tipo de dimensiones y a cualquier tipología de negocio.</p>
+    <p>Pan precocido: se recibe el pedido de forma regular en masa ultracongelada para cocer en punto de venta y disponer de pan caliente de calidad durante todo el día.<br />
+      Fabricamos todo tipo de pan y lo llevamos con las máximas garantías de calidad, siguiendo los procesos más selectivos para hacer el acabado en el punto de venta.</p>
+    <p>.</p>
+    <h4>PANES MÀS PEDIDOS</h4>
+    <p>A continuacion vera los panes màs pedidos por nuestros clientes.</p>
+    <ol>
+      <li><strong>PANES QUE TIENEN SU ORIGEN EN ESPAÑA</strong>:En España existe bastante cultura de pan y por todo el territorio se puede disfrutar de panes de gran calidad elaborados por expertos panaderos artesanos. Pero además, existen panes conocidos bajo las Indicaciones Geográficas Protegidas, que es un indicador de calidad donde se reúnen productos que provienen de un lugar específico Por ahora, existen cuatro .</li>
+      <li><strong>Pan con pasas</strong>:El pan con pasas es típico de la gastronomía alemana y allí se conoce con el nombre de Rosinenbrot, también es un alimento de consumo habitual en países de Centroeuropa. Presenta un sabor delicioso gracias al toque exótico que le confieren las pasas y cada día está presente de manera más habitual en la gastronomía.</li>
+      <li><strong>Rosca:</strong> se presenta en forma de aro, generalmente relleno de sabores dulces. Se encuentra en distintos tamaños y tiene la ventaja de poder elaborarse con diferentes tipos de masa.</li>
+      <li><strong>Pan de molde:</strong> es un pan muy parecido al pan blanco, con la particularidad de que se le añade grasa para una mayor suavidad. Se prepara con aceites vegetales, normalmente de oliva o de girasol.</li>
+      <li><strong>Pan gourmet:</strong> aparece debido a la demanda de un tipo de consumidor más refinado. Se elabora de forma artesanal y puede ser completado con diversos ingredientes. Además, tiene la ventaja de no contar con aditivos químicos. Se caracteriza por tener una apariencia bien trabajada e ingredientes de primera calidad.<!-- end .content --></li>
+    </ol>
+</div>
+  <!-- end .container --></div>
+</body>
+</html>
